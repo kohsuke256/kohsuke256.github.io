@@ -130,11 +130,11 @@ a {
   }
   
   &.hidden-link {
-    text-decoration: initial;
+    text-decoration: inherit;
     color: inherit;
   
     &:visited {
-      color: initial;
+      color: inherit;
     }
   
     &:hover {
