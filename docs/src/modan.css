@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
+
+:root {
+  --color-link-text: #5b5bfa;
+  --color-key-light: #bbe8ff;
+  --color-main-bg: #16184c;
+  --color-main-text: #a6f7a2;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: grid;
+  position: relative;
+  grid-template-areas: "header header header"
+                       "left   main   right"
+                       "footer footer footer";
+  grid-template-columns: 1fr min(100dvw, 1000px) 1fr;
+  grid-template-rows: auto 1fr auto;
+  place-content: center;
+  min-height: 100dvh;
+
+  background-color: var(--color-main-bg);
+  color: var(--color-main-text);
+  text-shadow: 0 0 2px var(--color-main-text);
+  font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+header {
+  grid-area: header;
+  position: relative;
+  text-align: center;
+  padding-block: 1rem;
+
+  h1 {
+    margin-block: 0;
+  }
+
+  @media (width < 680px) {
+    border-block-end: 2px solid var(--color-key-light);
+  }
+
+  @media (width >= 680px) {
+    &::after {
+      --line-width: 2px;
+      --p1: 20%;
+      --p2: 30%;
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: 0 auto;
+      height: 1rem;
+      background-color: var(--color-key-light);
+      clip-path: polygon(
+          0% 0%,
+          var(--p1) 0%,
+          var(--p2) calc(100% - var(--line-width)),
+          calc(100% - var(--p2)) calc(100% - var(--line-width)),
+          calc(100% - var(--p1)) 0%,
+          100% 0%,
+          100% var(--line-width),
+          calc(100% - var(--p1)) var(--line-width),
+          calc(100% - var(--p2)) 100%,
+          var(--p2) 100%,
+          var(--p1) var(--line-width),
+          0% var(--line-width)
+        );
+    }
+  }
+}
+
+footer {
+  grid-area: footer;
+  position: relative;
+  padding-block: 2em;
+  padding-inline: max(80px, 2em);
+  
+  font-size: calc(12rem / 16);
+  text-align: center;
+  
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc(2rem / 16 + 2px);
+    margin-inline: auto;
+
+    border-block: 1px solid var(--color-key-light);
+  }
+}
+
+main {
+  grid-area: main;
+  padding-block: 2em;
+  padding-inline: max(1em, 16px);
+}
+
+h2, h3 {
+  margin-block: 0.25em 0.125em;
+}
+
+ul {
+  margin-block: 0;
+  list-style: none;
+  margin-inline-start: 2rem;
+  padding-inline-start: 0;
+
+  li::before {
+    content: "*";
+    display: inline-block;
+    padding-inline-end: 0.5em;
+  }
+}
+
+a {
+  color: var(--color-link-text);
+
+  &:visited {
+    color: var(--color-link-text);
+  }
+}
